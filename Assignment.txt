@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Form</title>
+    <style>
+      body{
+        background-image: url("BG2.JPEG");
+        background-repeat: no-repeat;
+        background-size: 100% 500%;
+      }
+    </style>
+  </head>
+  <body>
+    <p style="font-size: 30px; text-align: center">STUDENT DETAILS</p>
+    <form>
+      <select>
+      <div>
+        <option>Title</option>
+        <option>Mr</option>
+        <option>Miss</option>
+      </select>
+      <label> Name</label>
+      <input type="text" /><br /><br />
+      <label> Address</label>
+      <input type="text" />
+      <label> Phone</label>
+      <input type="number" /><br /><br />
+      <label> DOB</label>
+      <input type="date" />
+      <label> Age</label>
+      <input type="number" /><br /><br />
+    </div>
+      <div>
+      <label> Student Id</label>
+      <input type="number" /><br /><br />
+      <label>Branch</label>
+      <select>
+        <option
+          value="Branch">Branch</option>
+        </option>
+        <option
+          value="Computer Science">Computer Science</option>
+        </option>
+        <option
+        value="Information Science">Information Science</option>
+      </option>
+      <option
+      value="Electonics">Electonics</option>
+    </option>
+    <option
+    value="Civil">Civil</option>
+  </option>
+  <option
+  value="Mechanical">Mechanical</option>
+</option>
+      </select>
+    </div>
+    <br>
+    <br>
+    <input type=button value="SUBMIT"></input>
+    </form>
+  </body>
+</html>
