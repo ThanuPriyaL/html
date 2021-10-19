@@ -1,0 +1,198 @@
+//pom file
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.5.6-SNAPSHOT</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.example</groupId>
+	<artifactId>demo</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>demo</name>
+	<description>Demo project for Spring Boot</description>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+	<repositories>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
+
+</project>
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+//DemoAppli
+
+package com.example.demo;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+
+//@EnableAutoConfiguration
+@SpringBootApplication
+public class DemoApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(DemoApplication.class, args);
+	}
+
+	@Bean
+	public CommandLineRunner run(EmpRepositary repositary){
+		return (args ->{
+			insertEmpData(repositary);
+			System.out.println(repositary.findAll());
+		});
+	}
+	private void insertEmpData(EmpRepositary repository){
+		repository.save(new Emp  ("Thanu","Priya"));
+		repository.save(new Emp  ("ShinChan","Nohara"));
+		repository.save(new Emp  ("Cha","EunWo"));
+		repository.save(new Emp  ("Lee","MinHo"));
+		repository.save(new Emp  ("Lee","DongWook"));
+
+	}
+}
+------------------------------------------------------------------------------------------------------------------------------
+//Emp
+package com.example.demo;
+
+
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class Emp {
+
+
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String firstName;
+    private String lastName;
+
+    public Emp(String firstName, String lastName){
+        this.firstName=firstName;
+        this.lastName=lastName;
+    }
+
+    public Emp(){
+    }
+
+    public void setId(Long Id){
+        this.id=id;
+    }
+    public Long getId(long is){
+        return id;
+    }
+    public String getFirstName(){
+        return firstName;
+    }
+    public void setFirstName(String firstName){
+        this.lastName= firstName;
+    }
+    private String getlastName(){
+        return lastName;
+    }
+    public void setLastName(String firstName){
+        this.lastName= lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "Emp{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------
+//Emp repositort (interface)
+package com.example.demo;
+
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface EmpRepositary extends CrudRepository<Emp,Long> {
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+//appli properties
+spring.datasource.url=jdbc:h2:file:./data/myDB
+spring.datasource.driver-class-name=org.h2.Driver
+spring.datasource.username=root
+spring.datasource.password=root
+
+spring.jpa.hibernate.ddl-auto=update
+---------------------------------------------------------------------------------------
