@@ -1,0 +1,67 @@
+//html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="demo.js"></script>
+  </body>
+</html>
+
+
+--------------------------------------------------------------------
+//jss
+//let hour=9;
+//if(hour>=6 && hour<12)console.log("Good Morning");
+//else if(hour>=12 && hour<18)console.log("Good Afterenoon");
+//else console.log("Good Night");
+//console.log("Good Morning")
+
+/*let food="desserts"
+switch(food)
+{
+    case"starters":
+    console.log("soup");
+    break;
+    case"Main_Course":
+    console.log("Food");
+    break;
+    case"desserts":
+    console.log("jamun");
+    break;
+    case"soft_drinks":
+    console.log("choclate milkshake");
+    break;
+    default:
+    console.log("choose");
+    break;
+}
+for(let i=0;i<10;i++){
+    console.log("hello hi bye");
+}
+for(let i=0;i<10;i++){
+    if(i%2===0)console.log("even num",i);
+    else console.log("odd num",i);
+}
+
+function primes(number){
+    for(let num=1;num<=number;num++){
+        let count=0;
+        for(let i=2;i<=num/2;i++){
+    if(num%i==0){
+        count++;
+    }
+}
+if(num===2||num===1){
+    console.log(num+"is notprime");
+}
+else if(count===0){
+    console.log(num+"is notprime");
+}
+}
+}
+primes(9);*/
